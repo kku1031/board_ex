@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter @Setter @ToString
 @AllArgsConstructor @NoArgsConstructor
 public class Board {
-	private long bno; //�Խù� ��ȣ
+	private long bno; //게시물 번호
 	private String title;
 	private String contents;
 	private String writer;

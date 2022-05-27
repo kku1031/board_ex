@@ -18,15 +18,15 @@ public class TestAA {
 	
 	@Test
 	public void test1() {
-		System.out.println("Å×½ºÆ®1½ÇÇà");
+		System.out.println("í…ŒìŠ¤íŠ¸1 ì‹¤í–‰");
 	}
 	@Test
 	public void test2() {
-		System.out.println("Å×½ºÆ®2½ÇÇà");
+		System.out.println("í…ŒìŠ¤íŠ¸2 ì‹¤í–‰");
 	}
 	@Test
 	public void test3() {
-		System.out.println("Å×½ºÆ®3½ÇÇà");
+		System.out.println("í…ŒìŠ¤íŠ¸3 ì‹¤í–‰");
 	}
 	
 }

@@ -16,7 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class RootConfigTest {
 	
-	@Autowired //데이터 소스를 가져와서 연결할 때 사용 하는 어노테이션
+	@Autowired
 	private DataSource dataSource;
 	
 	@Test
