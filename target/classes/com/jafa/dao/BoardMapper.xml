@@ -23,9 +23,9 @@
 	<update id="update">
 		update board_tbl set
 		title = #{title},
-		content = #{content},
+		contents = #{contents},
 		writer = #{writer},
-		updateDate = #{updateDate}
+		updateDate = now()
 		where bno=#{bno}
 	</update>
 	
