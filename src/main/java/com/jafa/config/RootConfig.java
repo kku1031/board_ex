@@ -22,7 +22,7 @@ public class RootConfig {
 		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 		config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost/board_ex");
 		config.setUsername("root");
-		config.setPassword("1234");		
+		config.setPassword("1234");			
 		return new HikariDataSource(config);
 	}
 	

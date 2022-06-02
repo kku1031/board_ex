@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.dto.Board;
+import com.jafa.dto.Criteria;
+import com.jafa.dto.PageMarker;
 import com.jafa.service.BoardService;
 
 @Controller
@@ -22,9 +24,18 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public String getBoardlist(Model model) {
-		List<Board> list = service.getList();
+	public String getBoardlist(Criteria criteria, Model model) {
+		PageMarker pageMarker = new PageMarker();
+		pageMarker.setCriteria(criteria);
+		pageMarker.setTotalCount(service.totalCount());
+		System.out.println("시작페이지 : " + pageMarker.getStartPage());
+		System.out.println("끝 페이지 : " + pageMarker.getEndPage());
+		// ?page=1 시작페이지 : 1 - 끝페이지 10 ?page=1 시작페이지 : 9 - 끝페이지 10
+		// ?page=2 시작페이지 : 11 - 끝페이지 20
+		
+		List<Board> list = service.getList(criteria);
 		model.addAttribute("list", list);
+		model.addAttribute("pageMarker",pageMarker);
 		return "board/list";
 	}
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
