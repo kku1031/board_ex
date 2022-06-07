@@ -27,7 +27,7 @@ public class BoardController {
 	public String getBoardlist(Criteria criteria, Model model) {
 		PageMarker pageMarker = new PageMarker();
 		pageMarker.setCriteria(criteria);
-		pageMarker.setTotalCount(service.totalCount());
+		pageMarker.setTotalCount(service.totalCount(criteria));
 		System.out.println("시작페이지 : " + pageMarker.getStartPage());
 		System.out.println("끝 페이지 : " + pageMarker.getEndPage());
 		// ?page=1 시작페이지 : 1 - 끝페이지 10 ?page=1 시작페이지 : 9 - 끝페이지 10

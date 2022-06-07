@@ -2,6 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/layout/header.jspf"%>
 <div class="container">
+<div class="searchArea">
+	<form action="${contextPath}/board/list" id="searchFrom">		
+		<select name="type">
+			<option value="">===</option>
+			<option value="T" ${pageMarker.criteria.type eq 'T' ? 'selected':''}>제목</option>
+			<option value="C" ${pageMarker.criteria.type eq 'C' ? 'selected':''}>내용</option>
+			<option value="W" ${pageMarker.criteria.type eq 'W' ? 'selected':''}>작성자</option>
+		</select>		
+		<input type="text" class="form-control" name="keyword" value="${pageMarker.criteria.keyword}">
+		<button class="btn btn-primary">검색</button>
+	</form>
+</div>
 	<table class="table">
 		<tr>
 			<th>번호</th>
@@ -33,21 +45,26 @@
 			</tr>
 		</c:if>
 	</table>
+<form action="${contextPath}/board/list" id="pageForm">
+	<input type="hidden" name="page" value="${pageMarker.criteria.page}">
+	<input type="hidden" name="type" value="${pageMarker.criteria.type}">
+	<input type="hidden" name="keyword" value="${pageMarker.criteria.keyword}">
 	<ul class="pagination">
 		<c:if test="${pageMarker.prev}">
 			<li class="page-item">
-			<a class="page-link" href="?page=${pageMarker.startPage-1}">[이전페이지]</a></li>
+				<a class="page-link" href="${pageMarker.startPage-1}">[이전페이지]</a></li>
 		</c:if>
 		<c:forEach begin="${pageMarker.startPage}" end="${pageMarker.endPage}" var="pageNum">
-			<li class="page-item ${param.page == pageNum ? 'active':''}">
-			<a href="?page=${pageNum}" class="page-link">${pageNum}</a>
+			<li class="page-item ${pageMarker.criteria.page == pageNum ? 'active':''}">
+				<a href="${pageNum}" class="page-link">${pageNum}</a>
 			</li>
 		</c:forEach>
 		<c:if test="${pageMarker.next}">
 			<li class="page-item">
-			<a href="?page=${pageMarker.endPage+1}" class="page-link">[다음페이지]</a></li>
+				<a href="${pageMarker.endPage+1}" class="page-link">[다음페이지]</a></li>
 		</c:if>
 	</ul>
+</form>
 
 	<a href="${pageContext.request.contextPath}/board/register"
 		class="btn btn-primary">글 등록</a>
@@ -57,3 +74,14 @@
 </c:if>
 </div>
 <%@ include file="/WEB-INF/views/layout/footer.jspf"%>
+<script>
+$(function() {
+	let pageForm = $('#pageForm');
+	$('#pageForm a').on('click', function (e) {
+		e.preventDefault();
+		pageForm.find('input[name="page"]').val($(this).attr('href'));
+		$('#pageForm').submit();
+	});
+})
+
+</script>

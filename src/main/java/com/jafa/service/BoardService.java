@@ -33,10 +33,10 @@ public class BoardService {
 
 	public void update(Board board) {
 		mapper.update(board);
-	}
-	
-	public int totalCount() {
-		return mapper.totalCount();
+	}	
+
+	public int totalCount(Criteria criteria) {
+		return mapper.totalCount(criteria);
 	}
 
 }
